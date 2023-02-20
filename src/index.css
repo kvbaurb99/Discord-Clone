@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.shadow-top {
+  box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+  animation: fade-in 0.5s ease-in-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error {
+  animation: slide-down 0.5s ease-in-out;
+}
+
+@keyframes slide-down {
+  0% {
+    top: -50px; /* start off-screen */
+  }
+  100% {
+    top: 0; /* slide down to the top of the page */
+  }
+}
+
+
+.extend-start {
+  width: 0;
+}
+
+.extend {
+  width: 300px;
+}
