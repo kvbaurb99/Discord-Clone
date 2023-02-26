@@ -15,7 +15,7 @@ import Author from "./components/Author/Author";
 
 function App() {
 
-  // mysql authentication --------
+  // mysql authentication ----------
   const [usernameReg, setUsernameReg] = useState('');
   const [passwordReg, setPasswordReg] = useState('');
   const [username, setUsername] = useState(localStorage.getItem('username') || '');
