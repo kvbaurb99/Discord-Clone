@@ -23,5 +23,5 @@ Functional Discord Clone App with Front-End and Back-End
 - Javascript
 - React
 - NodeJS with Express
-- mySQL database
+- MySQL database
 
