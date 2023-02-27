@@ -14,6 +14,7 @@ Functional Discord Clone App with Front-End and Back-End
 - Sending messages between two users. You can choose user from expand bar on channel or after adding friend to your friendlist and clicking '+' next to private messages option
 - Changing your username
 - Managing your channels, at this moment only option to delete your channels with the servers and messages on
+- Notifications for friend requests and private messages
 - Typical prevent for a lot of elements e.g. inserting empty fields or channels that already exist
 
 ## Technologies
