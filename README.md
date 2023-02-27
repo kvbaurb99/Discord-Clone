@@ -25,3 +25,8 @@ Functional Discord Clone App with Front-End and Back-End
 - NodeJS with Express
 - MySQL database
 
+## App Architecture Diagram
+<br>
+
+![diagram](./images/discord.png)
+
