@@ -2,7 +2,7 @@
 
 Functional Discord Clone App with Front-End and Back-End
 
-## Installation
+## Installation and run
 
 ```javascript
     // clone repository
