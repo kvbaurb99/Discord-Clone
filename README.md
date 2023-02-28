@@ -2,6 +2,22 @@
 
 Functional Discord Clone App with Front-End and Back-End
 
+## Installation
+
+```javascript
+    // clone repository
+    git clone git@github.com:kvbaurb99/Discord-Clone.git
+
+    // change directory
+    cd Discord-Clone
+
+    // install modules
+    npm install
+
+    // run app
+    npm run start
+```
+
 ## List of functions
 
 - Login, signup and logout. Password minimum 6 length, hashed
