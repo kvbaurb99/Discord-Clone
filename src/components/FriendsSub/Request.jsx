@@ -3,11 +3,12 @@ import { AiOutlineCheck, AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { AiOutlineClose } from 'react-icons/ai'
 import axios from 'axios'
 
-export default function Request({sender, username, requestId, userId, usersData}) {
+export default function Request({sender, username, requestId, userId, usersData, setRequests}) {
 
     const url= 'https://icon-library.com/images/yellow-discord-icon/yellow-discord-icon-15.jpg'
     const [loading, setLoading] = useState(false)
     const [loading2, setLoading2] = useState(false)
+    const sortId = usersData.filter(user => user.username === sender);
 
 
 
@@ -30,21 +31,22 @@ export default function Request({sender, username, requestId, userId, usersData}
             }).then(() => {
                 axios.post('https://fierce-savannah-71823.herokuapp.com/api/requests', {
                     id: requestId
+                }).then((res) => {
+                    setLoading(false)
                 })               
             })
-            setLoading(false)
         })
 
     }
 
     const declineRequest = () => {
-        setLoading2(true)
+        setLoading2(true);
         axios.post('https://fierce-savannah-71823.herokuapp.com/api/requests', {
-            id: requestId
-        }).then(res => {
-            setLoading2(false)
+          id: requestId
         })
-    }
+        .then((res) => { 
+          setLoading2(false);
+        })}
 
   return (
     <div className='flex px-8 py-4 items-center border-t border-gray-400/20 w-[95%] mx-auto justify-between hover:bg-gray-400/20 rounded'>
@@ -52,7 +54,7 @@ export default function Request({sender, username, requestId, userId, usersData}
                 <img src="https://icon-library.com/images/yellow-discord-icon/yellow-discord-icon-15.jpg" alt="" className='w-[40px] h-[40px] rounded-full object-fit' />
                 <div className='flex flex-col text-xs ml-4'>
                     <p className='text-white font-bold text-sm'>{sender}</p>
-                    <p className='text-gray-400 text-xs'>#3423</p>
+                    <p className='text-gray-400 text-xs'>#{sortId[0].id}</p>
                 </div>
             </div>
             <div className='flex text-xl gap-3'>

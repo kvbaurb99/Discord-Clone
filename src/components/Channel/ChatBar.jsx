@@ -17,17 +17,14 @@ export default function ChatBar({username, data, form, setForm, channelData, set
     // channels for server side rendering
     const [channels, setChannels] = useState([]);
 
-    const info = useParams();
-    const product = data.find(product => product.name === info.name);
-
-
+    const { name } = useParams();
+    const product = data.find(product => product.name === name);
     const owner = product ? product.owner : '';
-    const name = product ? product.name : '';
-    const channel = channelData.filter(channel => channel.parent === name);
 
     useEffect(() => {
-        setChannels(channel);
-    }, [channel])
+        const filteredChannels = channelData.filter(channel => channel.parent === name);
+        setChannels(filteredChannels);
+    }, [channelData, name]);
 
 
     const checkUser = () => {

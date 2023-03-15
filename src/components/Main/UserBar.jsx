@@ -14,6 +14,9 @@ export default function UserBar({username, userId, channelData, userFriends, log
     const navigate = useNavigate()
 
 
+
+
+
   return (
     <div className='flex flex-col min-w-[250px] h-screen bg-[#282b30]'>
         <div className='flex flex-col w-full items-center mt-4 text-gray-400'>
@@ -35,8 +38,12 @@ export default function UserBar({username, userId, channelData, userFriends, log
             <div className='py-4 px-6 overflow-y-scroll scrollbar-hide'>
                 {userFriends.map(item => (
                     <UserBarFriend
+                    key={item.friend}
                     name={item.friend}
                     url={item.friendurl}
+                    username={username}
+                    userId={userId}
+                    userFriends={userFriends}
                     />
                 ))}
             </div>

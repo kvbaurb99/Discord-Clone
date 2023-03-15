@@ -1,9 +1,10 @@
 import React from 'react'
 import { FaUserFriends } from 'react-icons/fa'
-import { MdOutlineHelp } from 'react-icons/md'
-import { Link } from 'react-router-dom'
 
-export default function TopMain({setShow, requestsCount}) {
+
+export default function TopMain({setShow, show, requestsData}) {
+
+
 
 
   return (
@@ -14,14 +15,14 @@ export default function TopMain({setShow, requestsCount}) {
             <p className='ml-4 text-md'>Friends</p>
         </div>
         <div className='flex ml-4 gap-6 items-center'>
-            <p onClick={() => setShow('all')} className='hover:bg-gray-600 px-4 py-1 rounded cursor-pointer'>All</p>
-            <div className='flex items-center hover:bg-gray-600 rounded px-4'>
+            <p onClick={() => setShow('all')} className={`hover:bg-gray-600 ${show === 'all' ? 'bg-gray-600' : null} px-4 py-1 rounded cursor-pointer`}>All</p>
+            <div className={`flex ${show === 'pending' ? 'bg-gray-600' : null} items-center hover:bg-gray-600 rounded px-4`}>
                 <p onClick={() => setShow('pending')} className='py-1 cursor-pointer'>Pending</p>
-                {requestsCount > 0 ? <div className='ml-3 bg-red-600 text-white w-[20px] h-[20px] rounded-full text-base font-bold items-center justify-center flex'>
-                     <p className='text-xs'>{requestsCount}</p>
+                {requestsData.length > 0 ? <div className='ml-3 bg-red-600 text-white w-[20px] h-[20px] rounded-full text-base font-bold items-center justify-center flex'>
+                     <p className='text-xs'>{requestsData.length}</p>
                 </div> : null}
             </div>
-            <p onClick={() => setShow('add')} className='text-white bg-green-700 px-4 py-1 rounded cursor-pointer hover:bg-green-800 animate-pulse'>Add friend</p>
+            <p onClick={() => setShow('add')} className='text-white bg-blue-700 px-4 py-1 rounded cursor-pointer hover:bg-blue-800 animate-pulse'>Add friend</p>
         </div>
     </div>
 </div>

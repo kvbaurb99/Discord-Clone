@@ -1,9 +1,5 @@
 import React from 'react'
 import { FiSettings } from 'react-icons/fi'
-import { BiMicrophone } from 'react-icons/bi'
-import { SlEarphones } from 'react-icons/sl'
-import axios from 'axios'
-import { useEffect } from 'react'
 import { useState } from 'react'
 import ChangeUser from '../UserOptions/ChangeUser'
 import MainSettings from '../UserOptions/MainSettings'
@@ -11,17 +7,9 @@ import ManageChannels from '../UserOptions/ManageChannels'
 
 export default function UserInterface({username, userId, channelData, logout}) {
 
-    const [usersData, setUsersData] = useState();
     const [showSettings, setShowSettings] = useState(false)
     const [showForm, setShowForm] = useState('')
 
-    useEffect(() => {
-      axios.get('https://fierce-savannah-71823.herokuapp.com/api/users')
-        .then(res => {
-          const filterUser = res.data.filter(user => user.username === username)
-          setUsersData(filterUser);
-        })
-    }, [username]);
 
 
   return (

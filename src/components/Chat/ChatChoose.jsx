@@ -65,6 +65,7 @@ export default function ChatChoose({data, channelData, username, setCurrentChann
                     changeChannel={setCurrentChannel}
                     setRespond={setRespond}
                     respond={respond}
+                    userId={userId}
                   />
                 ))
                 : null

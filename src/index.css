@@ -4,6 +4,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+
+body {
+  background: #36393e;
+}
+
 * {
   font-family: 'Roboto', sans-serif;
 }
@@ -47,4 +52,79 @@
 
 .extend {
   width: 300px;
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 100;
+  }
+}
+
+@keyframes slide-in-top {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 100;
+  }
+}
+
+@keyframes slide-from-top {
+  from {
+    transform: translateY(100%);
+  } to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slide-from-bottom {
+  from {
+    transform: translateY(-100%);
+  } to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slide-from-right {
+
+  from {
+    transform: translateX(100%);
+  } to {
+    transform: translateX(0%);
+  }
+  
+}
+
+
+
+
+.slide-in-left {
+  animation: slide-in-left 1s ease-in-out;
+}
+
+.slide-in-friends {
+  animation: slide-from-right 1s ease-in-out;
+}
+
+
+.slide-in-top {
+  animation: slide-in-top 1s ease-in-out;
+}
+
+.slide-from-top {
+  animation: slide-from-top 1s ease-in-out;
+}
+
+.slide-from-bottom {
+  animation: slide-from-bottom 1s ease-in-out;
+}
+
+
+.no-scroll {
+  overflow: hidden;
 }

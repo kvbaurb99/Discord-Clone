@@ -1,23 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Friends from './Friends'
-import { useEffect } from 'react'
-import axios from 'axios'
 
-export default function AllFriends({username, userId}) {
+export default function AllFriends({username, userFriends, setUserFriends}) {
 
 
 
-    const [friendsData, setFriendsData] = useState([])
-    const filterFriends = friendsData.filter(friend => friend.user === username)
+    const filterFriends = userFriends ? userFriends.filter(friend => friend.user === username) : [];
     const friendsCount = filterFriends.length
 
 
-
-    useEffect(() => {
-        axios.get('https://fierce-savannah-71823.herokuapp.com/api/friends').then(res => {
-            setFriendsData(res.data)
-        })
-    })
 
   return (
     <div className='w-full h-full flex flex-col text-gray-300'>
@@ -27,9 +18,12 @@ export default function AllFriends({username, userId}) {
         <div className='flex flex-col'>
             {filterFriends.map(item => (
                 <Friends
+                    key={item.friend}
                     name={item.friend}
                     url={item.friendurl}
                     username={username}
+                    setUserFriends={setUserFriends}
+                    userFriends={userFriends}
                 />
             ))}
         </div>

@@ -13,7 +13,7 @@ export default function ChannelToManage({name, owner, setShowForm}) {
         setLoading(true)
         navigate('/main')
         try {
-            const response = await axios.post('https://fierce-savannah-71823.herokuapp.com/deletechannel' , {
+            await axios.post('https://fierce-savannah-71823.herokuapp.com/deletechannel' , {
                 name: name
             });
         } catch (error) {

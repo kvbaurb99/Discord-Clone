@@ -5,10 +5,15 @@ export default function SubChannel({name, changeChannel, server}) {
 
   const navigate = useNavigate()
 
+
+
+  
+
   const handleChannel = () => {
     changeChannel(name)
     navigate(`/channels/${server}/${name}`)
   }
+
 
 
   return (

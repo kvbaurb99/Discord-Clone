@@ -1,22 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { BsFillTrashFill } from 'react-icons/bs';
-import axios from 'axios';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
-export default function Message({text, user, img, time, item, username, owner}) {
+export default function Message({text, user, img, time, item, username, messageData, setMessage, handleDelete, loading}) {
 
-  const [loading, setLoading] = useState(false)
   
-
-
-  const handleDelete =  (msg) => {
-    setLoading(true)
-    axios.post(`https://fierce-savannah-71823.herokuapp.com/api/messages`, {
-     id: msg
-    }).then(res => {
-        setLoading(false)
-    })
- }
+  
 
 
 

@@ -1,17 +1,31 @@
 import React from 'react'
 import { BiHash } from 'react-icons/bi'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { BsPeopleFill } from 'react-icons/bs'
 import { MdOutlineHelp } from 'react-icons/md'
+import axios from 'axios'
+import { useEffect } from 'react'
 
 export default function TopChatBar() {
 
   const data = useParams()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    axios.get(`https://fierce-savannah-71823.herokuapp.com/servertocheck/${data.name}/${data.server}`).then(res => {
+      if (res.data.length === 0) {
+        navigate('/channeldoesnotexist')
+      } else {
+        return;
+      }
+    })
+  }, [])
 
   const extendBar = () => {
     let bar = document.querySelector('.extend-start')
     bar.classList.toggle('extend')
   }
+
 
   return (
     <div className='bg-[#36393e] w-full h-[70px] text-lg shadow-sm shadow-[#1e2124] flex items-center justify-between'>

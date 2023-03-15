@@ -1,21 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import { FaCamera } from 'react-icons/fa'
+import React, { useState } from 'react'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 export default function ServerForm({username, showServerForm, setShowServerForm, userId}) {
 
     const [serverReg, setServerReg] = useState('');
-    const [serverOwnerReg, setServerOwnerReg] = useState(username);
-    const [selectedFile, setSelectedFile] = useState('https://i.pinimg.com/originals/07/60/44/076044059ffca0bef363e7940ea4e3ae.jpg')
+    const serverOwnerReg = username;
+    const selectedFile = 'https://i.pinimg.com/originals/07/60/44/076044059ffca0bef363e7940ea4e3ae.jpg'
     const [channelColor, setChannelColor] = useState('bg-[#424549]')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
     const formattedTitle = `${serverReg.charAt(0).toUpperCase()}${serverReg.charAt(1)}${serverReg.charAt(2)}`;
 
-
-    const navigate = useNavigate();
 
     function handleColorChange(event) {
         const selectedColor = event.target.value;

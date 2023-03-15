@@ -1,21 +1,18 @@
 # Discord Clone App
 
-Functional Discord Clone App with Front-End and Back-End
+Functional Discord Clone App with front-end and back-end
 
-## Installation and run
+## Installation and run with Docker
+
 
 ```javascript
-    // clone repository
+    // 1. Download and install Docker Desktop
+
+    // 2. Clone repository 
     git clone git@github.com:kvbaurb99/Discord-Clone.git
-
-    // change directory
-    cd Discord-Clone
-
-    // install modules
-    npm install
-
-    // run app
-    npm run start
+    
+    // 3. Run Docker with your bash
+    docker-compose -f docker-compose.dev.yml up
 ```
 
 ## List of functions
@@ -41,6 +38,7 @@ Functional Discord Clone App with Front-End and Back-End
 - React
 - NodeJS with Express
 - MySQL database
+- Docker
 
 ## App Architecture Diagram
 <br>

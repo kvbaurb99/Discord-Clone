@@ -29,8 +29,10 @@ export default function ChangeUser({setShowForm, user, userId}) {
                 showAlert(res.data.err)
                 setLoading(false)
             } else {
+            localStorage.removeItem('username'); 
             navigate('/login')
             setLoading(false)
+            window.location.reload() 
             }
         })
     }

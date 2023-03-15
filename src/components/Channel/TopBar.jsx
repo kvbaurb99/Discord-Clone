@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BiHash } from 'react-icons/bi'
-import { useParams } from 'react-router-dom'
-import {BsFillChatLeftFill, BsFillInboxFill} from 'react-icons/bs'
-import { MdOutlineHelp } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import axios from 'axios'
 
 
-export default function TopBar({channel}) {
+export default function TopBar() {
 
   const chat = useParams()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    axios.get(`https://fierce-savannah-71823.herokuapp.com/channeltocheck/${chat.name}`).then(res => {
+      if (res.data.length === 0) {
+        navigate('/channeldoesnotexist')
+      } else {
+        return;
+      }
+    })
+  }, [])
+
+
  
 
   return (

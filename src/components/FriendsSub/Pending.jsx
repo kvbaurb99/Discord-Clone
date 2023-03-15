@@ -1,21 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Request from './Request'
-import axios from 'axios'
-import { useEffect } from 'react';
 
 
-export default function Pending({username, userId, usersData}) {
+export default function Pending({username, userId, usersData, requestsData}) {
 
-    const [requests, setRequests] = useState([]);
-    const filterRequests = requests.filter(request => request.receiver === username)
-    
-    useEffect(() => {
-        axios.get('https://fierce-savannah-71823.herokuapp.com/api/requests').then(res => {
-            setRequests(res.data)
-        }).catch(err => {
-            console.log(err)
-        })
-    }, [requests])
+
 
 
   return (
@@ -24,8 +13,9 @@ export default function Pending({username, userId, usersData}) {
             <h2 className='text-base font-bold'>FRIEND REQUESTS</h2>
         </div>
         <div>
-            {filterRequests.map(request => (
+            {requestsData.map(request => (
                 <Request
+                    key={request.id}
                     sender={request.sender}
                     username={username}
                     requestId={request.id}

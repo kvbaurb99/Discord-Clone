@@ -4,7 +4,6 @@ import ChannelToManage from './ChannelToManage'
 export default function ManageChannels({userId, channelData, user, setShowForm}) {
 
   const yourChannels = channelData.filter(channel => channel.owner === user)
-  console.log(yourChannels)
 
   return (
     <div className='absolute top-0 right-0 w-full h-screen bg-black/80 flex justify-center items-center z-50'>
@@ -16,6 +15,7 @@ export default function ManageChannels({userId, channelData, user, setShowForm})
         <div className='overflow-y-scroll scrollbar-hide'>
           {yourChannels.map(channel => (
             <ChannelToManage
+              key={channel.name}
               name={channel.name}
               owner={channel.owner}
               setShowForm={setShowForm}

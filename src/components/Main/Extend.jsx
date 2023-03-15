@@ -13,13 +13,13 @@ export default function Extend({data, usersData, username, userFriends, userId, 
     
     const { server } = product
     const channelOwner = data.find(item => item.name === server);
-    const date = currentUser ? currentUser[0].date : null;
-    const owner = channelOwner.owner ? channelOwner.owner : null;
+    const date = currentUser && currentUser.length > 0 ? currentUser[0].date : null;
+    const owner = channelOwner && channelOwner.owner ? channelOwner.owner : null;
 
     useEffect(() => {
-        const usersOnData = usersData.filter(user => user.username !== channelOwner.owner)
+        const usersOnData = usersData.filter(user => user.username !== (channelOwner && channelOwner.owner))
         setUsersOn(usersOnData)
-    }, [channelOwner.owner, usersData])
+    }, [channelOwner, usersData])
 
     useEffect(() => {
         const filter = userFriends.filter(item => item.friend === owner)
@@ -35,21 +35,22 @@ export default function Extend({data, usersData, username, userFriends, userId, 
             <p className='text-xs'>OWNER - 1</p>
             <div onClick={() => setClose(true)} className='flex items-center mt-2 hover:bg-[#36393e] rounded p-1 cursor-pointer'>
                 <img src="https://icon-library.com/images/yellow-discord-icon/yellow-discord-icon-15.jpg" alt="" className='w-[30px] h-[30px] rounded-full' />
-                <p className='text-red-600 font-bold ml-2'>{channelOwner.owner}</p>
+                <p className='text-red-600 font-bold ml-2'>{channelOwner && channelOwner.owner ? channelOwner.owner : ""}</p>
             </div>
         </div>
         <div className='px-4 py-4'>
             <p className='text-xs'>USERS - {usersOn.length}</p>
             <div className='flex flex-col mt-1'>
                 {usersOn.map(user => (
-                    <UserExtend
-                    name={user.username}
-                    userFriends={userFriends}
-                    username={username}
-                    userId={userId}
-                    usersData={usersData}
-                    date={user.date}
-                    />
+                   <UserExtend
+                   key={user.id}
+                   name={user.username}
+                   userFriends={userFriends}
+                   username={username}
+                   userId={userId}
+                   usersData={usersData}
+                   date={user.date || null}
+               />
                 ))}
             </div>
         </div>

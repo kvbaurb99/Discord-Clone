@@ -1,5 +1,4 @@
 import React from 'react'
-import { FaPlus } from 'react-icons/fa'
 import { AiOutlineClose } from 'react-icons/ai'
 import Friend from './Friend'
 
