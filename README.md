@@ -1,6 +1,10 @@
 # Discord Clone App
 
-Functional Discord Clone App with front-end and back-end
+Functional Discord Clone App with messages, channels, servers and friends featuers. All features are shown below.
+
+## Requirements
+
+To run your app locally you will have to install Docker Desktop and then you can install and run app with steps below.
 
 ## Installation and run with Docker
 
@@ -24,7 +28,7 @@ Functional Discord Clone App with front-end and back-end
 - Deleting global or private messages (you are not able to delete someone message)
 - Sending friend request. Receiver can accept or reject request. After accept users are displayed in All Friends bar and can send private messages between
 - Deleting friends 
-- Sending messages between two users. You can choose user from expand bar on channel or after adding friend to your friendlist and clicking '+' next to private messages option
+- Sending messages between two users. You can choose user from friends bar click on it and you will be redirectet to private chat
 - Changing your username
 - Managing your channels, at this moment only option to delete your channels with the servers and messages on
 - Notifications for friend requests and private messages
