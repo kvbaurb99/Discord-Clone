@@ -4,9 +4,9 @@ Functional Discord Clone App with messages, channels, servers and friends featue
 
 ## Requirements
 
-- App will not work properly if PORT will not be set to 3000. If you run app with Docker then PORT will be default set to 3000.
+- The app requires that the `PORT` environment variable is set to **3000**. If the `PORT` variable is not set correctly, the app may not function properly.
 
-- If you want run app locally with Docker you will have to install Docker Desktop and then you can install and run app with steps below.
+- If you want run app locally with Docker you will have to install `Docker Desktop` and then you can install and run app with steps below.
 
 ## Installation and run with Docker
 
