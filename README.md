@@ -1,6 +1,6 @@
 # Discord Clone App
 
-Functional Discord Clone App with messages, channels, servers and friends featuers. All features are shown below.
+Real Time Discord Clone App with messages, channels, servers and friends featuers. All features are shown below.
 
 ## Requirements
 
@@ -23,7 +23,7 @@ To run the app with Docker, follow these steps:
 3. Navigate to the `Discord-Clone` directory in your terminal and run the following command to start the app in development mode:
 
 ``` javascript
-    docker-compose -f docker-compose-dev.yml up
+    docker-compose -f docker-compose.dev.yml up
 ```
 
 This will start the app and print logs to the console. You can view the app by opening a web browser and navigating to http://localhost:3000.
