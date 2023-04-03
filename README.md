@@ -69,9 +69,10 @@ Note that you should run this command in the directory where the docker-compose.
 
 - HTML
 - CSS with Tailwind CSS
-- Javascript
-- React
+- JavaScript
+- ReactJS
 - NodeJS with Express
+- Socket.IO
 - MySQL Database
 - Docker
 
