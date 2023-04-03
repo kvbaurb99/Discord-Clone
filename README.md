@@ -30,6 +30,10 @@ This will start the app and print logs to the console. You can view the app by o
 
 Note that you should run this command in the directory where the docker-compose.dev.yml file is located.
 
+## Live demo
+
+https://gregarious-licorice-62ad4f.netlify.app/
+
 ## List of functions
 
 ### Authentication 
@@ -71,9 +75,10 @@ Note that you should run this command in the directory where the docker-compose.
 - CSS with Tailwind CSS
 - JavaScript
 - ReactJS
-- NodeJS with Express
+- NodeJS
+- Express
 - Socket.IO
-- MySQL Database
+- MySQL
 - Docker
 
 ## App Architecture Diagram
