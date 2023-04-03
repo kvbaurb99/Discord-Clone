@@ -1,88 +1,70 @@
-# Discord Clone App
+# Getting Started with Create React App
 
-Real Time Discord Clone App with messages, channels, servers and friends featuers. All features are shown below.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Requirements
+## Available Scripts
 
-- The app requires that the `PORT` environment variable is set to **3000**. If the `PORT` variable is not set correctly, the app may not function properly.
+In the project directory, you can run:
 
-- If you want run app locally with Docker you will have to install `Docker Desktop` and then you can install and run app with steps below.
+### `npm start`
 
-## Installation and run with Docker
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-To run the app with Docker, follow these steps:
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-1. Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop)
+### `npm test`
 
-2. Clone the repository by running the following command in your terminal:
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-```javascript
-    git clone git@github.com:kvbaurb99/Discord-Clone.git
-```
+### `npm run build`
 
-3. Navigate to the `Discord-Clone` directory in your terminal and run the following command to start the app in development mode:
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-``` javascript
-    docker-compose -f docker-compose.dev.yml up
-```
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-This will start the app and print logs to the console. You can view the app by opening a web browser and navigating to http://localhost:3000.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-Note that you should run this command in the directory where the docker-compose.dev.yml file is located.
+### `npm run eject`
 
-## Live demo
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-https://gregarious-licorice-62ad4f.netlify.app/
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## List of functions
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-### Authentication 
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-- Login: Allow users to log in with their email and password. Passwords are hashed and stored securely.
-- Signup: Allow new users to create an account with a minimum password length of 6 characters. Passwords are hashed and stored securely.
-- Logout: Allow users to log out of their account.
+## Learn More
 
-### Servers
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-- Create server: Allow users to create a new server with a name and color.
-- Delete server: Allow users to delete a server, including all channels and messages associated with it.
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Channels
-- Create channel: Allow users to create a channel within a server.
-- Delete channel: Allow users to delete a channel within a server.
+### Code Splitting
 
-### Messaging 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-- Send message: Allow users to send messages on a channel.
-- Delete message: Allow users to delete their own messages.
-- Send friend request: Allow users to send a friend request to another user.
-- Accept/reject friend request: Allow users to accept or reject friend requests from other users.
-- Send private message: Allow users to send private messages to their friends.
-- Delete friend: Allow users to delete friends from their friends list.
+### Analyzing the Bundle Size
 
-### User profile 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-- Change username: Allow users to change their username.
+### Making a Progressive Web App
 
-### Other
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-- Input validation: Validate user input to prevent empty fields or channels that already exist.
-- Notifications: Notify users when they receive friend requests or private messages.
+### Advanced Configuration
 
-## Technologies
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-- HTML
-- CSS with Tailwind CSS
-- JavaScript
-- ReactJS
-- NodeJS
-- Express
-- Socket.IO
-- MySQL
-- Docker
+### Deployment
 
-## App Architecture Diagram
-<br>
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-![diagram](./images/discord.png)
+### `npm run build` fails to minify
 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

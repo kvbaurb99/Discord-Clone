@@ -10,6 +10,7 @@ import PrivateChat from "./components/PrivateMessage/PrivateChat";
 import { createBrowserHistory } from 'history';
 import Author from "./components/Author/Author";
 import NoChannel from "./components/Main/NoChannel";
+import socket from "./components/socket/socket";
 
 
 
@@ -45,41 +46,111 @@ function App() {
   const [userId, setUserId] = useState(0)
 
 
-
-  axios.defaults.withCredentials = true;
   const history = createBrowserHistory();
 
   function logout() {
       history.push('/login')
       localStorage.removeItem('username');
-      setAuthData(null);
       window.location.reload()
+      setAuthData(null);
   }
 
-  // data of channels, servers
-  function getData() {
-    axios.get('https://fierce-savannah-71823.herokuapp.com/api/data')
-        .then(response => {
-            setChannelData(response.data.channels || []);
-            setServerData(response.data.servers || []);
-            setUserFriends(response.data.friends.filter(item => item.user === username))
-            setRequestsData(response.data.requests.filter(request => request.receiver === username))
-            setUsersData(response.data.users || [])
-            setUserData(response.data.users.filter(user => user.username === username))
-            // initiate next request after delay
-            setTimeout(getData, 2000);
-        })
-        .catch(error => {
-            // handle error
-            console.error(error);
-            // initiate next request after delay
-            setTimeout(getData, 2000);
-        });
-}
+  async function getChannels() {
+    const response = await axios.get('https://fierce-savannah-71823.herokuapp.com/api/channels');
 
-useEffect(() => {
-    getData();
-}, []);
+    setChannelData(response.data || []);
+
+  }
+
+
+
+  async function getServers() {
+    const response = await axios.get('https://fierce-savannah-71823.herokuapp.com/api/servers');
+    setServerData(response.data || [])
+  }
+
+  async function getFriends() {
+    const response = await axios.get('https://fierce-savannah-71823.herokuapp.com/api/friends');
+
+    setUserFriends(response.data.filter(item => item.user === username))
+  }
+
+  async function getRequests() {
+    const response = await axios.get('https://fierce-savannah-71823.herokuapp.com/api/requests');
+
+    setRequestsData(response.data.filter(request => request.receiver === username))
+  }
+
+  async function getUsers() {
+    const response = await axios.get('https://fierce-savannah-71823.herokuapp.com/api/users');
+
+    setUsersData(response.data || [])
+    setUserData(response.data.filter(user => user.username === username))
+  }
+
+  useEffect(() => {
+    getRequests()
+
+    socket.on('requestCreated', getRequests)
+
+    return () => {
+      socket.off('requestCreated');
+    }
+
+  }, [])
+
+  useEffect(() => {
+
+    getFriends()
+
+    socket.on('friendUpdate', getFriends)
+      
+
+    return () => {
+      socket.off('friendUpdate');
+    }
+
+    
+  }, [])
+
+  useEffect(() => {
+
+    getServers()
+
+    socket.on('serverCreated', getServers)
+
+    return () => {
+      socket.off('serverCreated')
+    }
+
+    
+
+  }, []);
+
+  useEffect(() => {
+
+    getChannels()
+
+    socket.on('channelCreated', getChannels)
+
+    return () => {
+      socket.off('channelCreated');
+    };
+
+  }, []);
+
+  useEffect(() => {
+
+    getUsers()
+
+    socket.on('userCreated', getUsers)
+
+    return () => {
+      socket.off('userCreated');
+    }
+
+  }, [username])
+
 
 
     useEffect(() => {
@@ -88,9 +159,6 @@ useEffect(() => {
   
   
   
-
-
-
     useEffect(() => {
     // store username in local storage
     localStorage.setItem('username', username);

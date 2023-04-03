@@ -4,6 +4,7 @@ import PrivateMessage from './PrivateMessage'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
+import socket from '../socket/socket'
 
 export default function PrivateCommunicate({chatsData, username, yourId, friend}) {
 
@@ -22,49 +23,21 @@ export default function PrivateCommunicate({chatsData, username, yourId, friend}
     axios.get(`https://fierce-savannah-71823.herokuapp.com/api/privatemessages/${userId}`)
       .then(response => {
         // check if last message was deleted
-        if (response.data.length === 0) {
-          setMessagesData(prevMessageData => {
-            const newMessageData = [...prevMessageData];
-            newMessageData.pop();
-            return newMessageData;
-          });
-        } else {
-          setMessagesData(response.data === undefined ? null : response.data || []);
-        }
-        
-  
-        // initiate next request after delay
-        setTimeout(getChannels, 1000);
-      })
-      .catch(error => {
-        // handle error
-        // initiate next request after delay
-        setTimeout(getChannels, 1000);
-      });
-  }
+        setMessagesData(response.data || [])
+  })}
 
-  const handleDelete = (msg) => {
-    setLoading2(true)
-    axios.post('https://fierce-savannah-71823.herokuapp.com/api/privatemessages', {
-      messageid: msg
-    })
-    .then((res) => { 
-      // manually remove deleted message from state of messageData
-      setMessagesData(prevMessageData => {
-        const newMessageData = prevMessageData.filter(message => message.messageid !== msg);
-        setLoading2(false)
-        return newMessageData;
-        
-      });
-    })
-    .catch(error => {
-      console.error(error);
-      setLoading2(false)
-    });
-  };
 
   useEffect(() => {
+
     getChannels()
+
+    socket.on('privateUpdate', getChannels)
+
+    return () => {
+      socket.off('privateUpdate')
+    }
+    
+
   }, [userId])
 
 
@@ -86,10 +59,6 @@ export default function PrivateCommunicate({chatsData, username, yourId, friend}
             id={msg.messageid}
             username={username}
             yourId={yourId}
-            loading = {loading}
-            setLoading = {setLoading}
-            handleDelete= {handleDelete}
-            loading2={loading2}
           />
         ))}
       </div>

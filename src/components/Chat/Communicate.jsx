@@ -5,6 +5,7 @@ import { BiHash } from 'react-icons/bi';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import Message from './Message';
 import InputMessage from './InputMessage';
+import socket from '../socket/socket';
 
 export default function Communicate({username, userId, servers, channelData}) {
   const chat = useParams();
@@ -26,57 +27,24 @@ export default function Communicate({username, userId, servers, channelData}) {
 
 
   
- function getChannels() {
-    axios.get(`https://fierce-savannah-71823.herokuapp.com/api/messages/${chat.name}/${chat.server}`)
-      .then(response => {
-        // check if last message was deleted
-        if (response.data.length === 0 && messageData.length > 0) {
-          setMessageData(prevMessageData => {
-            const newMessageData = [...prevMessageData];
-            newMessageData.pop();
-            return newMessageData;
-          });
+ async function getMessages() {
+    try {
+      const response = await axios.get(`https://fierce-savannah-71823.herokuapp.com/api/messages/${chat.name}/${chat.server}`);
 
-        if (response.data.length === 0) {
-          setMessageData([])
-        }  
-        } else {
-          setMessageData(response.data === undefined ? null : response.data || []);
-        }
-        
-  
-        // initiate next request after delay
-        setTimeout(getChannels, 1000);
-      })
-      .catch(error => {
-        // handle error
-        // initiate next request after delay
-        setTimeout(getChannels, 1000);
-      });
+      setMessageData(response.data || [])
+
+    } catch (error) {
+      console.log(error)
+    }
   }
   
-  const handleDelete = (msg) => {
-    setLoading2(true);
-    axios.post('https://fierce-savannah-71823.herokuapp.com/api/messages', {
-      id: msg
-    })
-    .then((res) => { 
-      setLoading2(false);
-      // manually remove deleted message from state of messageData
-      setMessageData(prevMessageData => {
-        const newMessageData = prevMessageData.filter(message => message.id !== msg);
-        return newMessageData;
-      });
-    })
-    .catch(error => {
-      console.error(error);
-      setLoading2(false);
-    });
-  };
 
   useEffect(() => {
-    getChannels()
-  }, [])
+    getMessages();
+    socket.on('messageCreated', getMessages);
+    return () => socket.off('messageCreated', getMessages);
+  }, []);
+  
 
 
 
@@ -88,25 +56,12 @@ export default function Communicate({username, userId, servers, channelData}) {
 
 
 
-
-
-
-
-      
-
-
-  
-
-
-
-
   return (
     <>
     <div className='md:w-[98%] w-[95%] h-full flex mx-auto text-gray-300 flex-col overflow-hidden'>
         <div className='w-[97%] mx-auto h-full flex flex-col-reverse overflow-y-scroll scrollbar-hide'>
         {loading ? <div className='rounded-full w-[40px] h-[40px] bg-[#282b30] flex items-center justify-center mb-4 ml-2'><AiOutlineLoading3Quarters className='animate-spin text-base md:text-xl' /></div> : null }
-            {sortedMessages.map((message) => (
-                
+            {sortedMessages.map((message) => (   
                 <Message
                     key={message.id}
                     text={message.message}
@@ -117,8 +72,6 @@ export default function Communicate({username, userId, servers, channelData}) {
                     username={username}
                     setMessageData={setMessageData}
                     messageData={messageData}
-                    handleDelete={handleDelete}
-                    loading={loading2}
                 />
                 
             ))}

@@ -18,7 +18,6 @@ export default function Friends({name, url, username, setUserFriends, userFriend
         .then((res) => { 
           // manually remove friend from state of userFriends  
           setLoading(false);
-          window.location.reload()
         })
         .catch(error => {
           console.error(error);

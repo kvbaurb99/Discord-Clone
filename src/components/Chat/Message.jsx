@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BsFillTrashFill } from 'react-icons/bs';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
+import axios from 'axios';
 
-export default function Message({text, user, img, time, item, username, messageData, setMessage, handleDelete, loading}) {
+export default function Message({text, user, img, time, item, username}) {
 
-  
-  
+  const [loading, setLoading] = useState(false)
 
+  const handleDelete = async (msg) => {
+    setLoading(true)
+    try {
+        await axios.post('https://fierce-savannah-71823.herokuapp.com/api/messages', {
+        id: msg
+      })
+      setLoading(false)
+    } catch (err) {
+      console.log(err)
+      setLoading(false)
+    }
+};
 
 
   const newDate = new Date(time).toLocaleDateString([], {day: "numeric", month: "long"})

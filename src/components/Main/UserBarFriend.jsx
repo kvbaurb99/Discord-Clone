@@ -21,10 +21,6 @@ export default function UserBarFriend({name, url, username, userId, userFriends}
         setUnread(res.data)
       }
     })
-    .catch(err => {
-      setTimeout(checkForRead, 10000)
-    })
-    setTimeout(checkForRead, 10000)
   }
 
   useEffect(() => {
@@ -45,7 +41,6 @@ export default function UserBarFriend({name, url, username, userId, userFriends}
         });
         const chatId = response.data.id;
         navigate(`/main/${chatId}`);
-        window.location.reload()
   
         // Mark the messages as read
         await axios.post('https://fierce-savannah-71823.herokuapp.com/privatemessagesread', {

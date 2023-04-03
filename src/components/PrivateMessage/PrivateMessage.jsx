@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import axios from 'axios';
 
-export default function PrivateMessage({name, message, date, id, username, handleDelete, loading2}) {
+export default function PrivateMessage({name, message, date, id, username}) {
+
+
+    const [loading, setLoading] = useState(false)
 
     const newDate = new Date(date).toLocaleDateString([], {day: "numeric", month: "long"})
     const newTime = new Date(date).toLocaleTimeString([], {timeStyle: 'short'});
   
     const formatted = `${newDate} ${newTime}`
+
+    const handleDelete = (msg) => {
+      setLoading(true)
+      axios.post('https://fierce-savannah-71823.herokuapp.com/api/privatemessages', {
+        messageid: msg
+      }).then(() => {
+        setLoading(false)
+      })
+    };
 
 
   return (
@@ -25,7 +38,7 @@ export default function PrivateMessage({name, message, date, id, username, handl
     <div>
         { username === name ?
       <div>
-        {loading2 ? <AiOutlineLoading3Quarters className='animate-spin' /> : <BsFillTrashFill onClick={() => handleDelete(id)} className='text-gray-400 hover:text-red-600 cursor-pointer' />}
+        {loading ? <AiOutlineLoading3Quarters className='animate-spin' /> : <BsFillTrashFill onClick={() => handleDelete(id)} className='text-gray-400 hover:text-red-600 cursor-pointer' />}
       </div>
             :
           null  
