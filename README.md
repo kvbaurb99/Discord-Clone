@@ -6,7 +6,6 @@ Real Time Discord Application with channels, servers, friends and messages featu
 
 ## Requirements
 
-- The app requires that the `PORT` environment variable is set to **3000**. If the `PORT` variable is not set correctly, the app may not function properly.
 - If you want run app locally with Docker you will have to install `Docker Desktop` and then you can install and run app with steps below.
 
 ## Installation and run with Docker
